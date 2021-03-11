@@ -3,7 +3,7 @@
 <div class='login_container'>
     <div class="login_box">
         <div class="avatar_box">
-            <img src="~assets/logo.png" alt="">
+            <img src="~assets/img/logo.png" alt="">
         </div>
         <!-- 登录表单区域 -->
     <el-form :model="loginForm" class="login_form" :rules="loginFormRules" ref="loginFormRef">
@@ -73,14 +73,12 @@ methods: {
              method:'post',
              data:this.loginForm
          }).then(res=>{
-             console.log(res)
               if(res.meta.status !==200) return  this.$message.error('登录失败，请检查用户名或者密码')
               this.$message.success('登录成功')
                         // 1.登录成功后 服务器返回了一个token  保存在客户端的sessionstoryage中
                 // 1.1 项目中除了登录以外的其他api接口 都必须在登录之后才能访问
                 // 1.2 token 只又在当前网站打开期间才生效，所以才储存在 sessionstorage中
                 //2 跳转到主页/home
-                console.log(res)
                 window.sessionStorage.setItem('token',res.data.token)//保存token
                 this.$router.push('/home')
           })
