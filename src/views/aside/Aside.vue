@@ -78,6 +78,7 @@ methods: {
             url:'menus',
             methods:'get'
         }).then(res=>{
+            // console.log(res)
         if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
         this.MenuList = res.data
         })
