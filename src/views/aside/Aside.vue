@@ -12,7 +12,9 @@
       active-text-color="#409EFF"
       :unique-opened="true"
       :collapse="isCollapse"
-      :collapse-transition="false">
+      :collapse-transition="false"
+      :router="true"
+      :default-active="activePath">
       <!-- 一级菜单 -->
       <el-submenu :index="item.id+''" v-for="item in MenuList" :key="item.id">
           <!-- 一级菜单的模板区域 -->
@@ -23,7 +25,7 @@
           <span>{{item.authName}}</span>
         </template>
         <!-- 二级导航 -->
-        <el-menu-item :index="subItem.id + ''" v-for="subItem in item.children" :key="subItem.id">
+        <el-menu-item :index=" '/'+subItem.path " v-for="subItem in item.children" :key="subItem.id" @click="saveNaveState('/'+subItem.path)">
             <template slot="title">
             <!-- 图标 -->
           <i class="el-icon-menu"></i>
@@ -56,7 +58,10 @@ return {
         '102':'iconfont icon-danju',
         '145':'iconfont icon-baobiao',
     },
-    isCollapse:false
+    //判断侧边栏是否展开
+    isCollapse:false,
+    //被激活的链接地址
+    activePath:''
 };
 },
 //监听属性 类似于data概念
@@ -73,19 +78,25 @@ methods: {
             url:'menus',
             methods:'get'
         }).then(res=>{
-            if(res.meta.status!==200) return this.$message.error(res.meta.msg)
-            this.MenuList=res.data
-            console.log(res)
+        if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
+        this.MenuList = res.data
         })
     },
     // 点击按钮实现折叠与展开
     toggleCollapse(){
         this.isCollapse=!this.isCollapse;
+    },
+    //保存点击 链接的激活状态
+    saveNaveState(activePath){
+        window.sessionStorage.setItem('activePath',activePath);
+        this.activePath=activePath
     }
 },
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
-    this.getMenuList()
+    this.getMenuList();
+    //动态的把存储的sessionStroage里面的值拿出来赋值给data 里面的activePath
+    this.activePath=window.sessionStorage.getItem('activePath')
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {
