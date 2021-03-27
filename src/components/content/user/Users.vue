@@ -112,7 +112,7 @@
 </el-dialog>
 <!-- 分配角色的对话框 -->
 <el-dialog
-  title="修改用户"
+  title="分配角色"
   :visible.sync="setRoleDialogVisible"
   width="50%"
   @close="setRoleDialogClosed" 
