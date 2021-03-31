@@ -40,7 +40,6 @@ return {
 },
 //监听属性 类似于data概念
 computed: {
-    Aside
 },
 //监控data中的数据变化
 watch: {},
