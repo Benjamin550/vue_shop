@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import {
-    Button,Form,FormItem,Input,Message,Container,Header,Aside,Main,Menu,Submenu,MenuItem,Breadcrumb,BreadcrumbItem,Card,Row,Col,Table,TableColumn,Switch,Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Select,Option,Cascader,Alert,TabPane,Tabs,Steps,Step,CheckboxGroup,Checkbox,Upload
+    Button,Form,FormItem,Input,Message,Container,Header,Aside,Main,Menu,Submenu,MenuItem,Breadcrumb,BreadcrumbItem,Card,Row,Col,Table,TableColumn,Switch,Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Select,Option,Cascader,Alert,TabPane,Tabs,Steps,Step,CheckboxGroup,Checkbox,Upload,TimelineItem,Timeline
 } from 'element-ui'
 import lang from 'element-ui/lib/locale/lang/en'
 import locale from 'element-ui/lib/locale'
@@ -41,5 +41,7 @@ Vue.use(Steps)
 Vue.use(CheckboxGroup)
 Vue.use(Checkbox)
 Vue.use(Upload)
+Vue.use(TimelineItem)
+Vue.use(Timeline)
 Vue.prototype.$message=Message //挂载到原型 上以后每个组件都能用this.$message访问Message
 Vue.prototype.$confirm=MessageBox .confirm
